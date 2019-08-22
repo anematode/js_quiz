@@ -81,7 +81,7 @@
 26. Which of the following returns false?
     1. `delete 0;`
     2. `delete '';`
-    3. `delete undefined;`
+    3. `delete NaN;`
     4. `delete false;`
     5. `delete null;`
 
