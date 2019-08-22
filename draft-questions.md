@@ -92,17 +92,17 @@
     ```
 
 16. What is the output of the following expression?
-```js
-(t = 1, ((t = 2) => t)(undefined))
-```
-1. `1`
-2. `2`
-3. `undefined`
-4. An arrow function
-5. A `ReferenceError`
+    ```js
+    (t = 1, ((t = 2) => t)(undefined))
+    ```
+    1. `1`
+    2. `2`
+    3. `undefined`
+    4. An arrow function
+    5. A `ReferenceError`
 
 1. ```js
     console.log(2 ** 3 ** 2);
     console.log(2 - 2 - 3);
     ```
-    what will this output?
+    What will this output?
