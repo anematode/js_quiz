@@ -4,12 +4,7 @@ function getHighlightedCode(string) {
 }
 
 let QUESTIONS_SEEN = [];
-let QUESTION_NUMBER = 1;
-
-const QUESTIONS = [
-  {difficulty: 0, type: "free", content: "What will the following code output?", code: `console.log("5");`, correct_answers: ["5"]},
-  {difficulty: 0, type: "mult", content: "What will the following code output?", code: `console.log("5");`, possible_answers: ["`0`", "`1`", "`3`", "`5`", "implementation-defined"], correct_answers: [3]}
-];
+let QUESTION_NUMBER = 0;
 
 function getQuestion(approx_difficulty = 0, variance = 1) {
   let best_question;
@@ -38,24 +33,143 @@ function getQuestion(approx_difficulty = 0, variance = 1) {
   return best_question;
 }
 
+function formatAns(answer) {
+  let backtick_escp = "ijowpiruwpioru";
+  let backtick_escp_regex = /ijowpiruwpioru/g;
+  let escaped = answer.replace(/\\`/g, backtick_escp);
+
+  let backtick_positions = [];
+
+  for (let i = 0; i < escaped.length; ++i) {
+    if (escaped[i] === '`') {
+      backtick_positions.push(i);
+    }
+  }
+
+  let formatted_string = "";
+  let code_udders = [];
+
+  for (let i = 0; i < backtick_positions.length; i += 2) {
+    let btick1 = backtick_positions[i], btick2 = backtick_positions[i + 1];
+
+    code_udders.push(getHighlightedCode(escaped.slice(btick1+1, btick2)));
+  }
+
+  let prev_indx = -1;
+
+  for (let i = 0; i < backtick_positions.length; i += 2) {
+    let indx = backtick_positions[i];
+
+    formatted_string += (escaped.slice(prev_indx + 1, indx));
+    formatted_string += "<span class='code_block'>" + code_udders[i] + "</span>";
+
+    prev_indx = backtick_positions[i+1];
+  }
+
+  formatted_string += escaped.slice(prev_indx + 1);
+
+  console.log(escaped, backtick_positions, formatted_string, code_udders);
+
+  return formatted_string.replace(backtick_escp_regex, "`");
+}
+
 function displayQuestion(question) {
+  if (!question) return;
+
   document.getElementById("qn").innerText = QUESTION_NUMBER;
   document.getElementsByClassName("question_content")[0].innerText = question.content;
 
-  let code_block = document.getElementsByClassName("code")[0];
-  code_block.removeChild(code_block.firstChild);
+  let code_block = document.getElementById("code_block");
 
   if (question.code) {
-    code_block.appendChild(getHighlightedCode(question.code));
+    code_block.innerHTML = getHighlightedCode(question.code);
+  } else {
+    code_block.innerHTML = '';
   }
 
   if (question.type === "mult") {
     document.getElementById("frsp").innerHTML = '';
-    document.getElementById("mult").innerHTML = question.possible_answers.map((answer, index) => {
-      `<input type="radio" name="answers" name="${index}" value="${index}">
-      <label for="${index}">${answer}</label>`}).join("\n");
+
+    let answer_buttons_html = question.possible_answers.map((answer, index) =>
+      `<input type="radio" name="answers" name="${index}" value="${index}" class="answer_buttons">
+      <label for="${index}">${formatAns(answer)}</label>`).join("<br>");
+    document.getElementById("answers").innerHTML = answer_buttons_html;
   } else {
-    document.getElementById("mult").innerHTML = '';
-    document.getElementById("frsp").innerHTML = '<input type="text"></input>';
+    document.getElementById("answers").innerHTML = '';
+    document.getElementById("frsp").innerHTML = '<textarea name="Response" id="free_resp"></textarea>';
   }
+}
+
+
+let CURRENT_DIFFICULTY = 0;
+let CURRENT_QUESTION;
+
+nextQuestion();
+
+function nextQuestion(gotCorrect = "yes") {
+  console.log("State: " + gotCorrect);
+  switch (gotCorrect) {
+    case "yes":
+      CURRENT_DIFFICULTY += 1;
+      break;
+    case "no":
+      CURRENT_DIFFICULTY -= 1;
+      break;
+    case "giveup":
+      CURRENT_DIFFICULTY -= 0.4;
+      break;
+  }
+
+  CURRENT_QUESTION = getQuestion(CURRENT_DIFFICULTY);
+  QUESTION_NUMBER++;
+
+  if (!CURRENT_QUESTION) {
+    alert("No more questions! You ended at difficulty " + CURRENT_DIFFICULTY);
+  }
+
+  displayQuestion(CURRENT_QUESTION);
+}
+
+function giveup() {
+  nextQuestion("giveup");
+}
+
+function submit() {
+  if (CURRENT_QUESTION.type === "mult") {
+    let buttons = Array.from(document.getElementsByClassName("answer_buttons"));
+    let checked = -1;
+
+    for (let i = 0; i < buttons.length; ++i) {
+      if (buttons[i].checked) {
+        checked = i;
+      }
+    }
+
+    if (checked === -1) {
+      alert("Please enter an answer or give up.");
+    }
+
+    if (CURRENT_QUESTION.correct_answers.includes(checked)) {
+      nextQuestion("yes");
+    } else {
+      nextQuestion("no");
+    }
+  } else {
+    let response = document.getElementById("free_resp").value.trim();
+
+    if (CURRENT_QUESTION.correct_answers.includes(response)) {
+      nextQuestion("yes");
+    } else {
+      nextQuestion("no");
+    }
+  }
+}
+
+function restart() {
+  QUESTIONS_SEEN = []
+  QUESTION_NUMBER = 0;
+  CURRENT_DIFFICULTY = 0;
+  CURRENT_QUESTION = undefined;
+
+  nextQuestion();
 }

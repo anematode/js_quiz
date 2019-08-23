@@ -16,14 +16,14 @@
       }
 
       body {
-        background-color: #fff6c7;
+        background-color: #fff6e7;
       }
 
       .container {
         margin: 0 auto;
         max-width: 1000px;
         text-align: left;
-        background-color: #fdf8d9;
+        background-color: #fdf8e9;
         min-height: calc(100% - 40px);
         padding: 20px 20px 20px 20px;
       }
@@ -65,27 +65,46 @@
         display: inline-block;
         float: right;
       }
+
+      .code_block {
+        font-size: 16px;
+        font-family: "Courier", monospace, sans-serif;
+      }
+
+      textarea {
+        font-size: 16px;
+        font-family: "Courier", monospace, sans-serif;
+        width: 100%;
+      }
       </style>
 
       <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism.css" rel="stylesheet" />
       <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-core.min.js"></script>
-	    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/plugins/autoloader/prism-autoloader.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-clike.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-javascript.min.js"></script>
   </head>
 
   <body>
     <div class="container">
       <p id="question"><span class="question_number" id="qn">4</span>. <span class="question_content">What is the output of the following JS code?</span></p>
+      <br>
       <div class="code">
+        <pre class="code_block" id="code_block">
 
+        </pre>
       </div>
+      <br>
       <div id="answers"> </div>
+      <br>
       <div id="frsp"> </div>
-
+      <br>
       <div class="submit_container">
-        <button class="giveup">Give Up</button>
-          <button class="submit">Submit</button>
+        <button class="cowwwww" onclick="restart()">Restart</button>
+        <button class="giveup" onclick="giveup()">Give Up</button>
+          <button class="submit" onclick="submit()">Submit</button>
       </div>
     </div>
+    <script src="questions.js"></script>
     <script src="brain.js"></script>
   </body>
 </html>
