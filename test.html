@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+  <head>
+    <title>The JS Quiz</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body,html {
+        height: 100%;
+      }
+
+      body {
+        background-color: #fff6c7;
+      }
+
+      .container {
+        margin: 0 auto;
+        max-width: 1000px;
+        text-align: left;
+        background-color: #fdf8d9;
+        min-height: calc(100% - 40px);
+        padding: 20px 20px 20px 20px;
+      }
+
+      p {
+        font-family: 'Roboto', sans-serif;
+      }
+
+      button {
+        background-color: #4DC475;
+        font-family: 'Roboto', sans-serif;
+        color: white;
+        cursor: pointer;
+        padding: 10px 30px;
+        margin: 5px;
+        outline: none;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        -webkit-transition-duration: 0.2s;
+        transition-duration: 0.2s;
+      }
+
+      button:hover {
+        background-color: #2DA455;
+        color: white;
+      }
+
+      button:active {
+        background-color: #1DB445;
+        color: white;
+      }
+
+      .submit_container {
+        width: 100%;
+      }
+
+      button {
+        display: inline-block;
+        float: right;
+      }
+      </style>
+
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism.css" rel="stylesheet" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-core.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <p id="question"><span class="question_number" id="qn">4</span>. <span class="question_content">What is the output of the following JS code?</span></p>
+      <div class="code">
+
+      </div>
+      <div id="answers"> </div>
+      <div id="frsp"> </div>
+
+      <div class="submit_container">
+        <button class="giveup">Give Up</button>
+          <button class="submit">Submit</button>
+      </div>
+    </div>
+    <script src="brain.js"></script>
+  </body>
+</html>
