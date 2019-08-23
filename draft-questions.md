@@ -106,3 +106,10 @@
     console.log(2 - 2 - 3);
     ```
     What will this output?
+
+25. Which of the following characters cannot be used as part of JavaScript code outside of strings and regex literals in Chrome 75?
+    1. `~`
+    2. <code>`</code>
+    3. `@`
+    4. `#`
+    5. `^`
