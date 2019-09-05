@@ -78,7 +78,7 @@
     4. `/.///./`
     5. `() => (1, 2, )`
 
-26. Which of the following returns false?
+26. Which of the following returns `false`?
     1. `delete 0;`
     2. `delete '';`
     3. `delete NaN;`
@@ -113,3 +113,113 @@
     3. `@`
     4. `#`
     5. `^`
+
+37. Which of the following will cause a syntax error?
+    1. `class {}`
+    2. `(class A {})`
+    3. `new class A {}`
+    4. `(class {})()`
+    5. `class A {}`
+
+30. Which of the following returns `"number"`?
+    1. `typeof Number`
+    2. `typeof Number()`
+    3. `typeof new Number()`
+    4. `typeof number`
+    5. `typeof 10n`
+
+14. Which of the following will put a `<div>` element inside a `<p>` element?
+
+    1.
+    ```html
+    <p><div></div></p>
+    ```
+    2.
+    ```html
+    <p id="p"></p>
+    <script>
+    p.innerHTML = `<div></div>`;
+    </script>
+    ```
+    3.
+    ```html
+    <script>
+    document.body.innerHTML = `<p><div></div></p>`;
+    </script>
+    ```
+
+3. Given the following HTML document:
+    ```html
+    <style>
+    div {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100px;
+      height: 100px;
+    }
+    #b {
+      transform: translate(100px, 100px);
+      border-radius: 5px;
+    }
+    #c {
+      top: 50px;
+      left: 50px;
+      pointer-events: none;
+    }
+    </style>
+    <div id="a"></div>
+    <div id="b"></div>
+    <div id="c"></div>
+    ```
+    Which element will `document.elementFromPoint(100, 100)` return?
+    1. `<div id="a">`
+    2. `<div id="b">`
+    3. `<div id="c">`
+    4. `<html>`
+    5. None of the above
+
+1. In an iframe with scripting enabled, but no other parameters specified, where the parent (top) page has URL "sink.example.com," which of the following operations is permitted?
+    1. `top.location.href = "example.com/sink.html";`
+    2. `top.location.href = "cow.example.com/sink.html";`
+    3. `top.location.href = "cow.example.com";`
+    4. `top.location.href = "file:///C:\Windows\System32";`
+    5. `top.location.href = "google.com";`
+    6. None are permitted
+
+9. Which of the following global variables will not be defined in a web worker scope?
+
+    1. `self`
+    2. `this`
+    3. `global`
+    
+    1. I only
+    2. II only
+    3. I and II only
+    4. I, II, and III only
+    5. None are true
+
+1. As of 2019-06-02, which of the following major browsers supports `AudioWorklet`?
+    1. Firefox
+    2. Chrome
+    3. Opera
+    4. Internet Explorer
+    5. GNU IceCat
+
+1. In ECMAScript.Next, which of the following is defined?
+    1. `Array.prototype.flat`
+    2. `Array.prototype.flatten`
+    3. `Array.prototype.flattenArray`
+    4. `Array.prototype.smoosh`
+    5. `Array.prototype.join`
+
+47. If one chooses to omit semicolons in their code, which of the following lines would NOT require a semicolon preceding it to prevent unintended side effects? (assume all variables are defined)
+    1. `\`sheep\``
+    2. `{sheep: 'good'}`
+    3. `(sheep)`
+    4. `[sheep]`
+    5. All of the above
+
+11. What is the value of `alert + ''` in Chrome 75?
+
+
