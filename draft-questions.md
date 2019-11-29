@@ -222,4 +222,32 @@
 
 11. What is the value of `alert + ''` in Chrome 75?
 
+60. Celerio, a JavaScript developer, writes the following class.
+    ```js
+    function Animal (params = { species = 'Animalia', name = 'Billy' } = {}) {
+      this.species = species
+      this.name = name
+    }
+    ```
+    What is wrong with his implementation?
+    1. It declares a function, not a class.
+    2. `params` remains unused.
+    3. The constructor throws an error.
+    4. The constructor creates global variables.
+    5. There is nothing wrong with his implementation.
 
+61. Celeria, a JavaScript developer, writes the following class.
+    ```js
+    class Animal {
+      constructor (params = { species = 'Animalia', name = 'Billy' } = {}) {
+        this.species = species
+        this.name = name
+      }
+    }
+    ```
+    What is wrong with her implementation?
+    1. It uses special syntax that is not supported by many browsers.
+    2. `params` remains unused.
+    3. The constructor throws an error.
+    4. The constructor creates global variables.
+    5. There is nothing wrong with his implementation.
