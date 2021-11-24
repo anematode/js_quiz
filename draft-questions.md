@@ -214,7 +214,7 @@
     5. `Array.prototype.join`
 
 47. If one chooses to omit semicolons in their code, which of the following lines would NOT require a semicolon preceding it to prevent unintended side effects? (assume all variables are defined)
-    1. `\`sheep\``
+    1. `` `sheep` ``
     2. `{sheep: 'good'}`
     3. `(sheep)`
     4. `[sheep]`
@@ -251,3 +251,25 @@
     3. The constructor throws an error.
     4. The constructor creates global variables.
     5. There is nothing wrong with his implementation.
+
+1. Which of these are valid JS expressions?
+    ```js
+    // I
+    () => ()
+
+    // II
+    ()
+    => 3
+
+    // III
+    () =>
+    3
+    ```
+    1. I only
+    2. II only
+    3. III only
+    4. I and II
+    5. I and III
+    6. II and III
+    7. I, II, and III
+    8. None of them
